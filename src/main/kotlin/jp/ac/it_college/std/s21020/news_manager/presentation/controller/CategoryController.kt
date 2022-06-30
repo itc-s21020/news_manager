@@ -1,0 +1,41 @@
+package jp.ac.it_college.std.s21020.news_manager.presentation.controller
+
+import RegisterCategoryRequest
+import UpdateCategoryRequest
+import jp.ac.it_college.std.s21020.news_manager.application.service.AdminCategoryService
+import jp.ac.it_college.std.s21020.news_manager.domain.model.CategoryModel
+import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("category")
+@CrossOrigin(origins = ["http://localhost8081/"], allowCredentials = "true")
+class CategoryController(
+    private val adminCategoryService: AdminCategoryService
+) {
+    @PostMapping("/register")
+    fun register(@RequestBody request: RegisterCategoryRequest) {
+        adminCategoryService.register(
+            CategoryModel(0, request.name)
+        )
+    }
+
+    @PutMapping("/update")
+    fun update(@RequestBody request: UpdateCategoryRequest) {
+        println("aaa")
+        adminCategoryService.update(
+            CategoryModel(request.id, request.name)
+        )
+    }
+
+    @DeleteMapping("/delete/{category_id}")
+    fun delete(@PathVariable("category_id") categoryId: Long) {
+        adminCategoryService.delete(categoryId)
+    }
+}

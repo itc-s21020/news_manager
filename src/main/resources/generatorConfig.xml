@@ -17,6 +17,9 @@ MyBatis Generator Configuration 1.0//EN"
                 password="s21020">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
         <javaModelGenerator
                 targetPackage="jp.ac.it_college.std.s21020.news_manager.database.record"
                 targetProject="src/main/kotlin">
